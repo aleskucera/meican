@@ -1,5 +1,8 @@
 name: Run Ansible Playbook
-on: [push]
+on:
+  push:
+    branches: [main]
+
 jobs:
   run-playbook:
     runs-on: ubuntu-latest
@@ -12,10 +15,10 @@ jobs:
         with:
           playbook: roles/meican/tests/test.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          options: --verbose
+#          options: --verbose
 
       - name: Print home directory tree
-        run: 'tree /home/meican/'
+        run: 'tree -d /home/meican/'
 
       - name: List all users
         run: 'cut -d: -f1 /etc/passwd'
