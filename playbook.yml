@@ -1,8 +1,8 @@
 --- 
   - hosts: develop_servers
     become: yes
-    vars_files:
-      - "vars.yml"
+    roles:
+      - roles/meican
 
       
 

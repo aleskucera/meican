@@ -23,17 +23,17 @@
   become_user: "{{ app_user }}"
   tags: [ meican_configuration ]
 
-- name: Install meican
-  shell: "docker-compose -f /home/{{ app_user }}/meican/docker-compose.yml up -d"
-  become: yes
-  become_user: "{{ app_user }}"
-  tags: [ meican_compose ]
-
-- name: Configuration
-  template:
-    src: "{{ item.template }}"
-    dest: "{{ item.dest }}"
-  become: yes
-  become_user: "{{ app_user }}"
-  loop: "{{ templates }}"
-  tags: [ meican_configuration ]
+#- name: Install meican
+#  shell: "docker-compose -f /home/{{ app_user }}/meican/docker-compose.yml up -d"
+#  become: yes
+#  become_user: "{{ app_user }}"
+#  tags: [ meican_compose ]
+#
+#- name: Configuration
+#  template:
+#    src: "{{ item.template }}"
+#    dest: "{{ item.dest }}"
+#  become: yes
+#  become_user: "{{ app_user }}"
+#  loop: "{{ templates }}"
+#  tags: [ meican_configuration ]
