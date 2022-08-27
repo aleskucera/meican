@@ -1,0 +1,39 @@
+---
+- include_tasks: prerequisites.yml
+  tags: [ prerequisites ]
+
+- include_tasks: app_user.yml
+  tags: [ app_user ]
+
+- name: Download git repository
+  git:
+    repo: "{{ repository.url }}"
+    dest: "{{ repository.path }}"
+    clone: yes
+    update: no
+  become: yes
+  become_user: "{{ app_user }}"
+  tags: [ meican_download ]
+
+- name: Configure credentials for installation
+  template:
+      src: "environment.j2"
+      dest: "/home/{{ app_user }}/meican/.env"
+  become: yes
+  become_user: "{{ app_user }}"
+  tags: [ meican_configuration ]
+
+- name: Install meican
+  shell: "docker-compose -f /home/{{ app_user }}/meican/docker-compose.yml up -d"
+  become: yes
+  become_user: "{{ app_user }}"
+  tags: [ meican_compose ]
+
+- name: Configuration
+  template:
+    src: "{{ item.template }}"
+    dest: "{{ item.dest }}"
+  become: yes
+  become_user: "{{ app_user }}"
+  loop: "{{ templates }}"
+  tags: [ meican_configuration ]

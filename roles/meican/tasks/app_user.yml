@@ -1,0 +1,20 @@
+---
+# Create app specific user
+- name: Create group
+  group:
+    name: "{{ app_user }}"
+    state: present
+  tags: [ app_user ]
+
+- name: Create a user
+  user:
+    name: "{{ app_user }}"
+    groups:
+      - "{{ app_user }}"
+      - "ssl-cert"
+      - "docker"
+    state: present
+    createhome: yes
+    home: "{{ home_path }}"
+    shell: /bin/bash
+  tags: [ app_user ]

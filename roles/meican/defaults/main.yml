@@ -1,0 +1,10 @@
+---
+app_user: "meican"
+home_path: "/home/{{ app_user }}"
+
+repository: {url: "https://github.com/ufrgs-hyman/meican.git", path: "/home/{{ app_user }}/meican"}
+templates:
+  - { template: 'params.j2', dest: '{{ home_path }}/config/params.php' }
+  - { template: 'mailer.j2', dest: '{{ home_path }}/config/mailer.php' }
+
+prerequisites: ['docker', 'docker-compose', 'git']
