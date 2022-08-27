@@ -16,11 +16,10 @@ jobs:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: test.yml
-          directory: roles/meican/tests
+          playbook: roles/meican/tests/test.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
           options: |
-            --inventory inventory
-            --limit test_servers
-            --extra-vars hello=local
+#            --inventory inventory
+#            --limit test_servers
+#            --extra-vars hello=local
             --verbose
