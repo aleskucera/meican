@@ -8,10 +8,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Print workspace
-        run: echo "{{workspace}}"
+        run: tree
 
       - name: Neco
-        run: pwd
+        run: ls
+
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
