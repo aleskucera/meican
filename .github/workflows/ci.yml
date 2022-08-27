@@ -18,8 +18,8 @@ jobs:
         with:
           playbook: roles/meican/tests/test.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          options: |
+#          options: |
 #            --inventory inventory
 #            --limit test_servers
 #            --extra-vars hello=local
-            --verbose
+#            --verbose
