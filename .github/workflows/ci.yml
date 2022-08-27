@@ -14,11 +14,8 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
           options: --verbose
 
-      - name: Print directory tree
-        run: 'tree'
-
-      - name: Show user
-        run: 'whoami'
+      - name: Print home directory tree
+        run: 'tree /home/meican/'
 
       - name: List all users
         run: 'cut -d: -f1 /etc/passwd'
